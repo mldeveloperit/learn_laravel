@@ -19,12 +19,12 @@ Route::get('/info/{name}/{family}', function ($name, $family) {
     return 'Hello ' . $name . ' ' . $family;
 });
 
-Route::get('/info_page/{name}/{family}', function ($name, $family) {
+Route::get('/info_page/{name}/{family}/{place?}', function ($name, $family, $place = 'qazvin') {
 //    return view('info')->with('name' , $name)->with('family', $family);
 
 //    $info = ['name' => $name, 'family' => $family];
 //    return view('info', compact('info'));
 
-    $info = ['name' => $name, 'family' => $family];
+    $info = ['name' => $name, 'family' => $family, 'place' => $place];
     return view('info', $info);
 });

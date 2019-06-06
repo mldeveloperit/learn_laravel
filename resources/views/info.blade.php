@@ -79,7 +79,7 @@
 
     <div class="content">
         <div class="title m-b-md">
-            Hello Mr {{$name}} {{$family}}
+            Hello {{$name}} {{$family}} from {{ $place }}
         </div>
     </div>
 </div>
