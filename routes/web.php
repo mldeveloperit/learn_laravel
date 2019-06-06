@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\DB;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -27,4 +29,19 @@ Route::get('/info_page/{name}/{family}/{place?}', function ($name, $family, $pla
 
     $info = ['name' => $name, 'family' => $family, 'place' => $place];
     return view('info', $info);
+});
+
+Route::get('/user', function() {
+    $users = DB::table('users')->get();
+    return $users;
+});
+
+Route::get('/user/{id}', function($id) {
+    $user = DB::table('users')->find($id);
+    dd($user);
+});
+
+Route::get('/user/column/{name}', function($column) {
+    $names = DB::table('users')->pluck($column, 'email');
+    return view('user_list', compact('names'));
 });
