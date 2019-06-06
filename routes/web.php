@@ -14,3 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/info/{name}/{family}', function ($name, $family) {
+    return 'Hello ' . $name . ' ' . $family;
+});
+
+Route::get('/info_page/{name}/{family}', function ($name, $family) {
+//    return view('info')->with('name' , $name)->with('family', $family);
+
+//    $info = ['name' => $name, 'family' => $family];
+//    return view('info', compact('info'));
+
+    $info = ['name' => $name, 'family' => $family];
+    return view('info', $info);
+});
