@@ -37,6 +37,7 @@ Route::get('/user', function() {
 });
 
 Route::get('/user/{id}', function($id) {
+//    $user = DB::table('users')->where('id', $id)->get();
     $user = DB::table('users')->find($id);
     dd($user);
 });
