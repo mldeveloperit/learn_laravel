@@ -39,6 +39,12 @@ Route::get('/user', function() {
 Route::get('/user/{id}', function($id) {
 //    $user = DB::table('users')->where('id', $id)->get();
     $user = DB::table('users')->find($id);
+    $user = \App\User::all();
+    $user = \App\User::pluck('email');
+    $user = \App\User::where('id', '>', 5)->get(); // question : how to combine pluck & where?
+    $user = \App\User::where('id', '>', 5)->orderBy('name', 'desc')->get();
+    $user = \App\User::where('id', 5)->first(); // question : why this return full object?
+    $user = \App\User::find($id); // question : why this return full object?
     dd($user);
 });
 
