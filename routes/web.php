@@ -31,13 +31,13 @@ Route::get('/info_page/{name}/{family}/{place?}', function ($name, $family, $pla
     return view('info', $info);
 });
 
-Route::get('/user', function() {
+Route::get('/users', function() {
     $users = DB::table('users')->get();
     return $users;
 });
 
-Route::get('/user/{id}', function($id) {
-//    $user = DB::table('users')->where('id', $id)->get();
+/*Route::get('/user/{id}', function($id) {
+    $user = DB::table('users')->where('id', $id)->get();
     $user = DB::table('users')->find($id);
     $user = \App\User::all();
     $user = \App\User::pluck('email');
@@ -46,9 +46,20 @@ Route::get('/user/{id}', function($id) {
     $user = \App\User::where('id', 5)->first(); // question : why this return full object?
     $user = \App\User::find($id); // question : why this return full object?
     dd($user);
-});
+});*/
 
 Route::get('/user/column/{name}', function($column) {
     $names = DB::table('users')->pluck($column, 'email');
     return view('user_list', compact('names'));
 });
+
+Route::get('articles', function (){
+    dd(\App\Article::getLastTree());
+    return;
+});
+
+
+Route::get('users', 'UserController@index');
+Route::get('user/{id}', 'UserController@show')->name('user.show');
+
+Route::get('article/{article}', 'ArticleController@show'); // Route model binding
