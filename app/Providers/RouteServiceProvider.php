@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Article;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -26,6 +27,10 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
+
+        Route::bind('articleSlug', function($slug){
+            return Article::where('slug', $slug)->first();
+        });
     }
 
     /**

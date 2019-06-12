@@ -14,9 +14,12 @@ class ArticlesTableSeeder extends Seeder
     public function run(Faker\Generator $faker)
     {
         for ($i = 0; $i<10; $i++) {
+            $title = $faker->sentence();
+
             DB::table('articles')->insert([
                 'user_id' => $faker->numberBetween(1,10),
-                'title' => $faker->sentence(),
+                'title' => $title,
+                'slug' => str_slug($title),
                 'body' => $faker->text(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()

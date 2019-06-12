@@ -62,4 +62,6 @@ Route::get('articles', function (){
 Route::get('users', 'UserController@index');
 Route::get('user/{id}', 'UserController@show')->name('user.show');
 
-Route::get('article/{article}', 'ArticleController@show'); // Route model binding
+Route::get('articles', 'ArticleController@index');
+Route::get('article/{article}', 'ArticleController@show')->name('article.show'); // Route model implicit binding
+Route::get('article/slug/{articleSlug}', 'ArticleController@showSlug')->name('article.showSlug'); // Route model explicit binding
