@@ -17,7 +17,10 @@ class ArticleController extends Controller
 
     public function index()
     {
-        $articles = Article::all();
+//        $articles = Article::all();
+        return csrf_token();
+        $articles = Article::latest()->take(3)->get();
+        return $articles;
         return view('article/list', compact('articles'));
     }
 
@@ -29,5 +32,21 @@ class ArticleController extends Controller
     public function showSlug($article)
     {
         return view('article.show', compact('article'));
+    }
+
+    public function create()
+    {
+        return view('article.create');
+    }
+
+    public function store()
+    {
+        Article::create([
+            'title' => request('title'),
+            'slug' => request('title'),
+            'body' => request('body'),
+            'user_id' => 3,
+        ]);
+        return redirect('/articles');
     }
 }

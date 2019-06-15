@@ -65,3 +65,5 @@ Route::get('user/{id}', 'UserController@show')->name('user.show');
 Route::get('articles', 'ArticleController@index');
 Route::get('article/{article}', 'ArticleController@show')->name('article.show'); // Route model implicit binding
 Route::get('article/slug/{articleSlug}', 'ArticleController@showSlug')->name('article.showSlug'); // Route model explicit binding
+Route::get('article/create', 'ArticleController@create');
+Route::post('article', 'ArticleController@store')->name('article.store');
