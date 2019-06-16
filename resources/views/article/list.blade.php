@@ -6,7 +6,8 @@
             <ul>
                 @foreach($articles as $article)
                     <li>
-                        <a href="{{ route('article.show', ['id' => $article->id]) }}">{{ $article->id }} : {{ $article->title }}</a>
+                        {{--<a href="{{ route('article.show', ['id' => $article->id]) }}">{{ $article->id }} : {{ $article->title }}</a>--}}
+                        {{ $article->title }}
                     </li>
                 @endforeach
             </ul>
@@ -38,7 +39,7 @@
                <p class="lead">
                    ارسال شده توسط <a href="index.php">حسام موسوی</a>
                </p>
-               <p><span class="glyphicon glyphicon-time"></span>ارسال شده در تاریخ  فرودین 1396</p>
+               <p><span class="glyphicon glyphicon-time"></span>ارسال شده در تاریخ  {{ jdate($article->created_at)->format('%B %d، %Y') }}</p>
                <hr>
                <img class="img-responsive" src="/images/900x300.png" alt="">
                <hr>

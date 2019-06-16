@@ -6,6 +6,7 @@ use App\Article;
 use App\Http\Requests\StoreArticle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Hosseinhkj\Slug\Slug;
 
 class ArticleController extends Controller
 {
@@ -66,11 +67,13 @@ class ArticleController extends Controller
                 ->withInput();
         }*/
 
+//        dd($request->title);
+//        dd(Slug::slugify($request->title));
 
         Article::create([
-            'title' => request('title'),
-            'slug' => request('title'),
-            'body' => request('body'),
+            'title' => $request->title,
+            'slug' => Slug::slugify($request->title),
+            'body' => $request->body,
             'user_id' => 3,
         ]);
         return redirect('/articles');
