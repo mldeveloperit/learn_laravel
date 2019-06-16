@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Http\Requests\StoreArticle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ArticleController extends Controller
 {
@@ -18,9 +20,9 @@ class ArticleController extends Controller
     public function index()
     {
 //        $articles = Article::all();
-        return csrf_token();
+//        return csrf_token();
         $articles = Article::latest()->take(3)->get();
-        return $articles;
+//        return $articles;
         return view('article/list', compact('articles'));
     }
 
@@ -39,8 +41,32 @@ class ArticleController extends Controller
         return view('article.create');
     }
 
-    public function store()
+    public function store(StoreArticle $request)
     {
+        // Laravel 5.8
+        /*$validatedData = $request->validate([
+            'title' => 'required|max:255',
+        ]);*/
+
+
+        /*$this->validate($request, [
+            'title' => 'required'
+        ]);*/
+
+        $request->validate();
+
+        /*$validator = Validator::make($request->all(), [
+            'title' => 'required|unique:posts|max:255',
+            'body' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('article/create')
+                ->withErrors($validator)
+                ->withInput();
+        }*/
+
+
         Article::create([
             'title' => request('title'),
             'slug' => request('title'),
