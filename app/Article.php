@@ -15,4 +15,9 @@ class Article extends Model
         return $query->latest()->take(3)->get()->pluck('title');
         return $query->latest()->take(3)->get();
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

@@ -53,17 +53,22 @@ Route::get('/user/column/{name}', function($column) {
     return view('user_list', compact('names'));
 });
 
-Route::get('articles', function (){
+/*Route::get('articles', function (){
     dd(\App\Article::getLastTree());
     return;
-});
+});*/
+
+/*Route::get('article/create', function (){
+    dd('123');
+    return;
+});*/
 
 
 Route::get('users', 'UserController@index');
 Route::get('user/{id}', 'UserController@show')->name('user.show');
 
 Route::get('articles', 'ArticleController@index');
-//Route::get('article/{article}', 'ArticleController@show')->name('article.show'); // Route model implicit binding
+Route::get('article/create', 'ArticleController@create')->name('article.create');
+Route::get('article/{article}', 'ArticleController@show')->name('article.show'); // Route model implicit binding
 Route::get('article/slug/{articleSlug}', 'ArticleController@showSlug')->name('article.showSlug'); // Route model explicit binding
-Route::get('article/create', 'ArticleController@create');
 Route::post('article', 'ArticleController@store')->name('article.store');

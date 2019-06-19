@@ -1,13 +1,13 @@
 @extends('layouts.layout')
 
 @section('content')
-       <div class="hide">
+       <div class="">
            <h3>Article with ID</h3>
             <ul>
                 @foreach($articles as $article)
                     <li>
-                        {{--<a href="{{ route('article.show', ['id' => $article->id]) }}">{{ $article->id }} : {{ $article->title }}</a>--}}
-                        {{ $article->title }}
+{{--                        <a href="{{ route('article.show', ['id' => $article->id]) }}">{{ $article->id }} : {{ $article->title }}</a>--}}
+                        <a href="{{ route('article.show', ['slug' => $article->slug]) }}">{{ $article->id }} : {{ $article->title }}</a>
                     </li>
                 @endforeach
             </ul>

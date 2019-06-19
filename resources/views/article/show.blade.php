@@ -1,5 +1,6 @@
-<html>
-<body>
+@extends('layouts.layout')
+
+@section('content')
 <div>
     <ul>
         <li>
@@ -7,5 +8,4 @@
         </li>
     </ul>
 </div>
-</body>
-</html>
+@endsection
