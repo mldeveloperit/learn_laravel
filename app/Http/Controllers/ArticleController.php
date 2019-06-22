@@ -44,6 +44,7 @@ class ArticleController extends Controller
 
     public function store(StoreArticle $request)
     {
+        // test
         // Laravel 5.8
         /*$validatedData = $request->validate([
             'title' => 'required|max:255',
