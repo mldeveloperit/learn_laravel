@@ -72,3 +72,5 @@ Route::get('article/create', 'ArticleController@create')->name('article.create')
 Route::get('article/{article}', 'ArticleController@show')->name('article.show'); // Route model implicit binding
 Route::get('article/slug/{articleSlug}', 'ArticleController@showSlug')->name('article.showSlug'); // Route model explicit binding
 Route::post('article', 'ArticleController@store')->name('article.store');
+
+Route::post('article/{article}/comment', 'CommentController@store')->name('comment.store');

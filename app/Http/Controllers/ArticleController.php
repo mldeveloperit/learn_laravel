@@ -22,14 +22,19 @@ class ArticleController extends Controller
     {
 //        $articles = Article::all();
 //        return csrf_token();
-        $articles = Article::latest()->take(3)->get();
+//        $articles = Article::latest()->take(3)->get();
 //        return $articles;
+        $articles = Article::paginate(3);
         return view('article/list', compact('articles'));
+//        return view('article/list', ['article' => $articles, 'comments' => [$articles->comments()->get()]]);
     }
 
     public function show(Article $article)
     {
-        return view('article.show', compact('article'));
+//        dd($article->comments()->pluck('name'));
+//        return view('article.show', compact('article'));
+        $comments = $article->comments()->get();
+        return view('article.show', compact('article', 'comments'));
     }
 
     public function showSlug($article)
@@ -44,7 +49,6 @@ class ArticleController extends Controller
 
     public function store(StoreArticle $request)
     {
-        // test
         // Laravel 5.8
         /*$validatedData = $request->validate([
             'title' => 'required|max:255',
