@@ -12,8 +12,11 @@
 */
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
+Auth::routes();
+
+Route::middleware('auth')->get('/', function () {
     return view('welcome');
 });
 
@@ -29,11 +32,6 @@ Route::get('/info_page/{name}/{family}/{place?}', function ($name, $family, $pla
 
     $info = ['name' => $name, 'family' => $family, 'place' => $place];
     return view('info', $info);
-});
-
-Route::get('/users', function() {
-    $users = DB::table('users')->get();
-    return $users;
 });
 
 /*Route::get('/user/{id}', function($id) {
@@ -64,7 +62,7 @@ Route::get('/user/column/{name}', function($column) {
 });*/
 
 
-Route::get('users', 'UserController@index');
+Route::get('users', 'UserController@index')->middleware('auth');
 Route::get('user/{id}', 'UserController@show')->name('user.show');
 
 Route::get('articles', 'ArticleController@index');
@@ -74,3 +72,7 @@ Route::get('article/slug/{articleSlug}', 'ArticleController@showSlug')->name('ar
 Route::post('article', 'ArticleController@store')->name('article.store');
 
 Route::post('article/{article}/comment', 'CommentController@store')->name('comment.store');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

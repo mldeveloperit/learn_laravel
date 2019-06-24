@@ -23,7 +23,27 @@
                     <a href="#">تماس با ما</a>
                 </li>
             </ul>
+
+            @if(Auth::check())
+                <form action="{{ route('logout') }}" method="post">
+                    {{ csrf_field() }}
+                    <ul class="nv navbar-left" style="margin-top: 10px; align-content: left">
+                        <button href="#" type="submit" class="btn btn-danger">خروج</button>
+                    </ul>
+                </form>
+            @else
+                <ul class="nav navbar-nav navbar-left" style="margin-top: 0px;">
+                    <li>
+                        <a href="{{ route('login') }}" >ورود</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('register') }}}" >عضویت</a>
+                    </li>
+                </ul>
+            @endif
         </div>
+
+
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
